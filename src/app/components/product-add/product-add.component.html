@@ -1,0 +1,50 @@
+<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+
+    <div>
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="name" 
+          formControlName="name">
+          
+        <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched" class="text-danger">
+            <small style="color: red;" *ngIf="productForm.get('name')?.hasError('required')">Name is required.</small>
+        </div>
+    </div>
+
+    <div >
+        <label for="description">Description</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="description" 
+          formControlName="description">
+          
+        <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched" class="text-danger">
+            <small style="color: red;" *ngIf="productForm.get('description')?.hasError('required')">Description is required.</small>
+        </div>
+    </div>
+
+    <div>
+        <label for="price">Price</label>
+        <input 
+          type="number" 
+          class="form-control" 
+          id="price" 
+          formControlName="price">
+          
+        <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="text-danger">
+            <small style="color: red;" *ngIf="productForm.get('price')?.hasError('required')">Price is required.</small>
+            <small style="color: red;" *ngIf="productForm.get('price')?.hasError('numbersOnly')">Only numbers are allowed.</small>
+        </div>
+    </div>
+
+    <div >
+        <label for="productCategory">Category:</label>
+        <span>1</span>
+    </div>
+
+    <button type="submit" [disabled]="productForm.invalid">Submit</button>
+
+</form>
